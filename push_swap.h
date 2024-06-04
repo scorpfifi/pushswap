@@ -60,5 +60,5 @@ int		ft_found_max(t_stack *stack);
 int	ft_found_min(t_stack *stack);
 int	ft_found_index(int value, t_stack *stack);
 int ft_found_target(int value_s, t_stack *stack);
-
+int ft_calculate_move (int value_s, t_stack *stack);
 #endif

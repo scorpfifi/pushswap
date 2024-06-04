@@ -54,14 +54,17 @@ int ft_found_target(int value_s, t_stack *stack)
      return(value_target);
 }
 
-int ft_calculate_move (t_stack *stack)
+int ft_calculate_move (int value_s, t_stack *stack)
 {
     int target;
     int pos_target;
+    int move;
 
-    target = ft_found_target(4, stack);
+
+    target = ft_found_target(value_s, stack);
     pos_target = ft_found_index(target, stack);
-
-    printf("pos %d", pos_target);
-    return (0);
+    if (pos_target < ft_size_stack(stack) / 2)
+    {
+        move = pos_target - 1;
+    }
 }

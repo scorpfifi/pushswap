@@ -142,3 +142,4 @@ int	ft_found_index(int value, t_stack *stack)
 	}
 	return (index);
 }
+
