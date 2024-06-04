@@ -36,7 +36,7 @@ int	main (int argc, char **argv)
 			ft_add_back(stack_a, new);
 			i++;
 		}
-		printf("%d\n", ft_found_target(16, *stack_a));
+		printf("%d\n", ft_found_target(6, *stack_a));
 		printf("----------------------------------------\n");
 		return (0);
 	}

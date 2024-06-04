@@ -30,7 +30,6 @@ int ft_found_target(int value_s, t_stack *stack)
 {
     int value_target;
     int tmp;
-    int val_tmp;
     int max;
     int min;
     
@@ -50,8 +49,19 @@ int ft_found_target(int value_s, t_stack *stack)
             tmp = value_s - stack->value;
             value_target = stack->value;
         }
-        tmp = tmp;
         (stack) = stack->next;
     }
      return(value_target);
+}
+
+int ft_calculate_move (t_stack *stack)
+{
+    int target;
+    int pos_target;
+
+    target = ft_found_target(4, stack);
+    pos_target = ft_found_index(target, stack);
+
+    printf("pos %d", pos_target);
+    return (0);
 }

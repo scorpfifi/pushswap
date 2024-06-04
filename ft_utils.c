@@ -128,17 +128,17 @@ int	ft_found_min(t_stack *stack)
 	}
 	return (value);
 }
-int	ft_found_index(int value, t_stack **stack)
+int	ft_found_index(int value, t_stack *stack)
 {
 	int	index;
 	
 	index = 1;
-	while (*stack)
+	while (stack)
 	{
-		if (value == (*stack)->value)
+		if (value == (stack)->value)
 			return (index);
 		index++;
-		(*stack) = (*stack)->next;
+		(stack) = (stack)->next;
 	}
 	return (index);
 }

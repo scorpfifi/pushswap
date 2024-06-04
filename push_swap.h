@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 #include <stdlib.h>
-#include "../libft_bonus/libft.h"
+#include "libft_bonus/libft.h"
 #include <stdio.h>
 
 typedef struct s_stack
@@ -58,7 +58,7 @@ void	ft_rr(t_stack **stack_a, t_stack **stack_b);
 void    ft_sort_big(t_stack **stack_a, t_stack **stack_b);
 int		ft_found_max(t_stack *stack);
 int	ft_found_min(t_stack *stack);
-int	ft_found_index(int value, t_stack **stack);
+int	ft_found_index(int value, t_stack *stack);
 int ft_found_target(int value_s, t_stack *stack);
 
 #endif
