@@ -6,7 +6,7 @@
 /*   By: vmpianim <vmpianim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:52:04 by vmpianim          #+#    #+#             */
-/*   Updated: 2024/05/28 14:05:27 by vmpianim         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:11:29 by vmpianim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_stack
 t_stack *ft_clear_stack(t_stack *stack_a);
 t_stack	*ft_new_list(int value);
 void ft_add_back(t_stack **alst, t_stack *new);
-void    ft_print_value_stack(t_stack **stack);
+void    ft_print_value_stack(t_stack *stack);
 void	ft_print_index_stack(t_stack **stack);
 char	**ft_splited(int argc, char **argv);
 t_stack   *ft_last_list(t_stack *stack);
@@ -61,4 +61,7 @@ int	ft_found_min(t_stack *stack);
 int	ft_found_index(int value, t_stack *stack);
 int ft_found_target(int value_s, t_stack *stack);
 int ft_calculate_move (int value_s, t_stack *stack);
+int	ft_size_stack(t_stack *stack);
+int ft_found_min_move(t_stack *stack_a, t_stack *stack_b);
+void    ft_execute_move(t_stack **stack_a, t_stack **stack_b);
 #endif

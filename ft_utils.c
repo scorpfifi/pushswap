@@ -6,7 +6,7 @@
 /*   By: vmpianim <vmpianim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 12:51:03 by vmpianim          #+#    #+#             */
-/*   Updated: 2024/05/28 14:37:45 by vmpianim         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:36:29 by vmpianim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ t_stack   *ft_last_list(t_stack *stack)
     return(stack);
 }
 
-void ft_print_value_stack(t_stack **stack)
+void ft_print_value_stack(t_stack *stack)
 {
 
-    while (*stack)
+    while (stack)
     {
-        printf("valeur de la stack [%d]\n", (*stack)->value);
-        (*stack) = (*stack)->next;
+        printf("valeur de la stack [%d]\n", (stack)->value);
+        (stack) = (stack)->next;
     }
 	printf("\n\n");
 }
@@ -143,3 +143,15 @@ int	ft_found_index(int value, t_stack *stack)
 	return (index);
 }
 
+int	ft_size_stack(t_stack *stack)
+{
+	int	size;
+
+	size = 0;
+	while (stack)
+	{
+		size++;
+		stack = stack->next;
+	}
+	return (size);
+}

@@ -6,7 +6,7 @@
 /*   By: vmpianim <vmpianim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 12:39:35 by vmpianim          #+#    #+#             */
-/*   Updated: 2024/05/28 14:49:27 by vmpianim         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:13:29 by vmpianim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	main (int argc, char **argv)
 			ft_add_back(stack_a, new);
 			i++;
 		}
-		ft_calculate_move(*stack_a);
-		printf("----------------------------------------\n");
+		//printf ("target %d \n ", ft_found_target(6, *stack_a));
+		ft_sort_big(stack_a, stack_b);
 		return (0);
 	}
 	ft_print_error();
