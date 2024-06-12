@@ -6,7 +6,7 @@
 /*   By: vmpianim <vmpianim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 10:33:52 by vmpianim          #+#    #+#             */
-/*   Updated: 2024/06/05 14:15:20 by vmpianim         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:52:54 by vmpianim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,28 @@
 void    ft_sort_big(t_stack **stack_a, t_stack **stack_b)
 {
     //1.pushed 2 number to stack
-    printf("1. pusher deux element dans stackb\n");
     ft_pb(stack_a, stack_b);
     ft_pb(stack_a, stack_b);
+    int min_move;
+    int pos_a;
+    int pos_b;
+    int i;
+    int target;
+
+    i = ft_size_stack(*stack_a);
+    while (i > 3)
+    {  
+        min_move = ft_found_min_move(*stack_a, *stack_b);
+        target = ft_found_target(min_move, *stack_b);
+        pos_b = ft_found_index(target, *stack_b);
+        pos_a = ft_found_index(min_move, *stack_a);
+        ft_execute_move_stack(pos_a, *stack_a);
+        ft_execute_move_stack(pos_b, *stack_b);
+        ft_pb(stack_a, stack_b);
+        i--;
+    }
     ft_print_value_stack(*stack_a);
     ft_print_value_stack(*stack_b);
-    printf ("--------------------------------------\n");
-    int size;
-
-    size = ft_size_stack(*stack_a);
-    ft_execute_move(stack_a, stack_b);
-    
 }
 int ft_found_target(int value_s, t_stack *stack)
 {
@@ -54,25 +65,27 @@ int ft_found_target(int value_s, t_stack *stack)
      return(value_target);
 }
 
-int ft_calculate_move (int value_s, t_stack *stack)
+int ft_calculate_move (int value_s, t_stack *stack_a, t_stack *stack_b)
 {
     int target;
     int pos_target;
-    int move;
+    int move_a;
+    int move_b;
 
-
-    target = ft_found_target(value_s, stack);
-    pos_target = ft_found_index(target, stack);
-    if (pos_target <= ft_size_stack(stack) / 2)
-    {
-        move = ft_found_index(target, stack);
-    }
+    target = ft_found_target(value_s, stack_b);
+    // move_a
+    if (ft_found_index(value_s, stack_a) <= ft_size_stack(stack_a) / 2)
+        move_a = ft_found_index(value_s, stack_a) - 1;
     else
-    {
-        move = pos_target - (ft_size_stack(stack) / 2) + 1;
-    } 
-    return (move);                      
+        move_a = ft_found_index(value_s, stack_a) - ft_size_stack(stack_a) / 2;
+    // move b
+    if (ft_found_index(target, stack_b) <= ft_size_stack(stack_b) / 2)
+        move_a = ft_found_index(target, stack_b) - 1;
+    else
+        move_a = ft_found_index(target, stack_b) - ft_size_stack(stack_b) / 2;
+    return (move_a + move_b);                
 }
+
 
 int ft_found_min_move(t_stack *stack_a, t_stack *stack_b)
 {
@@ -80,36 +93,40 @@ int ft_found_min_move(t_stack *stack_a, t_stack *stack_b)
     int value_stack;
     
     value_stack = stack_a->value;
-    min_move = ft_calculate_move(stack_a->value, stack_b);
+    min_move = ft_calculate_move(stack_a->value, stack_a, stack_b);
     while (stack_a)
     {
-        if (ft_calculate_move(stack_a->value, stack_b) < min_move)
+        if (ft_calculate_move(stack_a->value, stack_a, stack_b) < min_move)
         {
-            min_move = ft_calculate_move(stack_a->value, stack_b);
+            min_move = ft_calculate_move(stack_a->value, stack_a, stack_a);
             value_stack = stack_a->value;
         }
         stack_a = stack_a->next;
     }
     return (value_stack);
 }
-
-void    ft_execute_move(t_stack **stack_a, t_stack **stack_b)
+void    ft_execute_move_stack(int pos, t_stack *stack)
 {
-    int value_stack;
-    int value_index;
-
-    value_stack = ft_found_min_move(*stack_a, *stack_b);
-    value_index = ft_found_index(value_stack, *stack_a);
+    int size;
+    int i;
     
-    if (value_index <= ft_size_stack(*stack_a) / 2)
+    size = ft_size_stack(stack);
+    if (pos <= size / 2)
     {
-        while (value_index > 1)
-        {
-            ft_ra(stack_a);
-            value_index--;
-        }
-        ft_pb(stack_a, stack_b);
-    ft_print_value_stack(*stack_a);
-    ft_print_value_stack(*stack_b);
+        i = pos;
+        while (--i > 0)
+            ft_ra(&stack);   
     }
+    else
+    {
+        i = pos - size / 2;
+        while (--i > 0)
+            ft_rra(&stack);
+            i--;
+    }
+}
+    
+void    ft_execute_move(t_stack *stack_a, t_stack *stack_b)
+{
+    return;
 }

@@ -6,7 +6,7 @@
 /*   By: vmpianim <vmpianim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 10:52:04 by vmpianim          #+#    #+#             */
-/*   Updated: 2024/06/05 14:11:29 by vmpianim         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:15:15 by vmpianim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ int		ft_found_max(t_stack *stack);
 int	ft_found_min(t_stack *stack);
 int	ft_found_index(int value, t_stack *stack);
 int ft_found_target(int value_s, t_stack *stack);
-int ft_calculate_move (int value_s, t_stack *stack);
+int ft_calculate_move (int value_s, t_stack *stack_a, t_stack *stack_b);
 int	ft_size_stack(t_stack *stack);
 int ft_found_min_move(t_stack *stack_a, t_stack *stack_b);
-void    ft_execute_move(t_stack **stack_a, t_stack **stack_b);
+void    ft_execute_move_stack(int pos, t_stack *stack);
+void    ft_execute_move(t_stack *stack_a, t_stack *stack_b);
+
 #endif
