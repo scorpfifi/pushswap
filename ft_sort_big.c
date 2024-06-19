@@ -6,7 +6,7 @@
 /*   By: vmpianim <vmpianim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 10:33:52 by vmpianim          #+#    #+#             */
-/*   Updated: 2024/06/12 11:52:54 by vmpianim         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:26:40 by vmpianim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void    ft_sort_big(t_stack **stack_a, t_stack **stack_b)
     int target;
 
     i = ft_size_stack(*stack_a);
+    printf ("2***************** ");
     while (i > 3)
     {  
         min_move = ft_found_min_move(*stack_a, *stack_b);
         target = ft_found_target(min_move, *stack_b);
         pos_b = ft_found_index(target, *stack_b);
         pos_a = ft_found_index(min_move, *stack_a);
-        ft_execute_move_stack(pos_a, *stack_a);
-        ft_execute_move_stack(pos_b, *stack_b);
-        ft_pb(stack_a, stack_b);
+        ft_execute_move_stack(pos_a, *stack_a, *stack_b);
+        ft_execute_move_stack(pos_b, *stack_b, *stack_b);
         i--;
     }
     ft_print_value_stack(*stack_a);
@@ -105,24 +105,33 @@ int ft_found_min_move(t_stack *stack_a, t_stack *stack_b)
     }
     return (value_stack);
 }
-void    ft_execute_move_stack(int pos, t_stack *stack)
+void    ft_execute_move_stack(int pos, t_stack *stack_a, t_stack *stack_b)
 {
     int size;
     int i;
     
-    size = ft_size_stack(stack);
+    size = ft_size_stack(stack_a);
     if (pos <= size / 2)
     {
         i = pos;
-        while (--i > 0)
-            ft_ra(&stack);   
+        printf ("valeur ");
+        while (i > 0)
+        {
+            printf ("valeur ");
+            ft_ra(&stack_a);
+            i--;
+        }
+        ft_pb(&stack_a, &stack_b);  
     }
     else
     {
         i = pos - size / 2;
-        while (--i > 0)
-            ft_rra(&stack);
+        while (i > 0)
+        {
+            ft_rra(&stack_a);
             i--;
+        }
+        ft_pb(&stack_a, &stack_b);
     }
 }
     

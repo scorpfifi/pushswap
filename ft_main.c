@@ -6,40 +6,59 @@
 /*   By: vmpianim <vmpianim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 12:39:35 by vmpianim          #+#    #+#             */
-/*   Updated: 2024/06/12 11:43:58 by vmpianim         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:30:49 by vmpianim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main (int argc, char **argv)
+char    *ft_join_args(int argc, char **argv)
 {
-	char	**splited;
-	int		i;
-	int		value;
-	int		max;
-	t_stack	**stack_a;
-	t_stack	**stack_b;
-	t_stack	*new;
-	
-	new = NULL;
-	stack_a = malloc(sizeof(t_stack));
-	stack_b = malloc(sizeof(t_stack));
-	i = 0;
-	if (ft_check_error(argc, argv))
-	{ 
-		splited = ft_splited(argc, argv);
-		while (splited[i])
-		{
-			value = ft_atoi_push(splited[i]);
-			new = ft_new_list(value);
-			ft_add_back(stack_a, new);
-			i++;
-		}
-		//printf ("target %d \n ", ft_found_target(6, *stack_a));
-		ft_sort_big(stack_a, stack_b);
-		return (0);
+    char    *join;
+    int     i;
+
+    i = 1;
+    if (argc < 2)
+        return (NULL);
+    join = ft_strdup("");
+    while (argc > 1)
+    {
+        join = ft_strjoin(join, argv[i]);
+        join = ft_strjoin(join, " ");
+        i++;
+        argc--;
+    }
+    return (join);
+}
+t_stack **ft_node_stack(char *str)
+{
+    char    **splited;
+    int     value;
+    int     i;
+    t_stack *new;
+    t_stack **stack_a;
+    
+    i = 0;
+    splited = ft_split(str, ' ');
+    stack_a = malloc(sizeof(t_stack));
+	while (splited[i])
+	{
+		value = ft_atoi(splited[i]);
+		new = ft_new_list(value);
+		ft_add_back(stack_a, new);
+		i++;
 	}
-	ft_print_error();
-	return (0);
+    return (stack_a);   
+}
+int main(int argc, char **argv)
+{
+    t_stack **stack_a;
+	t_stack	**stack_b;
+    char    *join;
+
+	stack_b = malloc(sizeof(t_stack));
+    join = ft_join_args(argc, argv);
+    stack_a = ft_node_stack(join);
+    ft_print_value_stack(*stack_a);
+	ft_sort_big(stack_a, stack_b);
 }

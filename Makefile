@@ -1,5 +1,5 @@
 NAME = push_swap
-CC = gcc
+CC = gcc -g
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror
 SRC_1 = ft_check_args.c ft_main.c ft_push.c ft_reverse.c ft_rotate.c ft_swap.c ft_utils_error.c ft_utils.c ft_sort_threestack.c ft_sort_big.c
